@@ -106,6 +106,10 @@ export default(state = [], action) => {
   switch(action.type){
     case 'ADD_ITEM':
       return [...state, action.item]
+    case 'REMOVE_ITEM':
+      let newCart = [...state];
+      newCart.splice(action.item, 1);
+      return newCart;
     default:
       return state
   }
@@ -137,6 +141,14 @@ export const addToCart = (item) => {
     //actions must have a type property
     type: 'ADD_ITEM', //action naming conventions: all caps with snake-case (JAVASCRIPT_CONSTANT naming convention )
     item //ES6 shorthand again {item: item}
+  }
+}
+
+export const removeFromCart = (item) => {
+  console.log(`ACTION: Removing ${item} from cart`)
+  return {
+    type: 'REMOVE_ITEM',
+    item
   }
 }
 ```
